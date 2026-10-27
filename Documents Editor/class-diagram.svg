@@ -1,0 +1,107 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="760" viewBox="0 0 1180 760" role="img" aria-labelledby="title description">
+  <title id="title">Document editor class diagram</title>
+  <desc id="description">UML-style class diagram showing document elements, document history, persistence implementations, and the editor facade.</desc>
+  <defs>
+    <style>
+      .background { fill: #f8fafc; }
+      .box { fill: #ffffff; stroke: #334155; stroke-width: 2; rx: 10; }
+      .header { fill: #dbeafe; stroke: #334155; stroke-width: 2; }
+      .title { font: 600 18px Arial, sans-serif; fill: #0f172a; }
+      .stereotype { font: italic 13px Arial, sans-serif; fill: #475569; }
+      .body { font: 14px Arial, sans-serif; fill: #1e293b; }
+      .relation { stroke: #475569; stroke-width: 2; fill: none; }
+      .label { font: 13px Arial, sans-serif; fill: #475569; }
+    </style>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10" fill="none" stroke="#475569" stroke-width="1.5"/>
+    </marker>
+    <marker id="triangle" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0,0 L12,6 L0,12 Z" fill="#f8fafc" stroke="#475569" stroke-width="1.5"/>
+    </marker>
+  </defs>
+  <rect class="background" width="1180" height="760"/>
+  <text x="590" y="42" text-anchor="middle" class="title" font-size="26">Document Editor - Class Diagram</text>
+
+  <rect class="box" x="55" y="108" width="300" height="118"/>
+  <path class="header" d="M65 108 H345 Q355 108 355 118 V164 H55 V118 Q55 108 65 108 Z"/>
+  <text x="205" y="132" text-anchor="middle" class="stereotype">&lt;&lt;abstract&gt;&gt;</text>
+  <text x="205" y="154" text-anchor="middle" class="title">DocumentElement</text>
+  <text x="76" y="193" class="body">+ render() : string</text>
+
+  <rect class="box" x="30" y="300" width="250" height="110"/>
+  <path class="header" d="M40 300 H270 Q280 300 280 310 V340 H30 V310 Q30 300 40 300 Z"/>
+  <text x="155" y="326" text-anchor="middle" class="title">TextElement</text>
+  <text x="50" y="370" class="body">- text : string</text>
+  <text x="50" y="394" class="body">+ render() : string</text>
+
+  <rect class="box" x="315" y="300" width="250" height="110"/>
+  <path class="header" d="M325 300 H555 Q565 300 565 310 V340 H315 V310 Q315 300 325 300 Z"/>
+  <text x="440" y="326" text-anchor="middle" class="title">ImageElement</text>
+  <text x="335" y="370" class="body">- imagePath : string</text>
+  <text x="335" y="394" class="body">+ render() : string</text>
+
+  <rect class="box" x="30" y="445" width="250" height="96"/>
+  <path class="header" d="M40 445 H270 Q280 445 280 455 V480 H30 V455 Q30 445 40 445 Z"/>
+  <text x="155" y="472" text-anchor="middle" class="title">NewLineElement</text>
+  <text x="50" y="518" class="body">+ render() : string</text>
+
+  <rect class="box" x="315" y="445" width="250" height="96"/>
+  <path class="header" d="M325 445 H555 Q565 445 565 455 V480 H315 V455 Q315 445 325 445 Z"/>
+  <text x="440" y="472" text-anchor="middle" class="title">TabSpaceElement</text>
+  <text x="335" y="518" class="body">+ render() : string</text>
+
+  <path class="relation" d="M155 300 L185 230" marker-end="url(#triangle)"/>
+  <path class="relation" d="M440 300 L230 230" marker-end="url(#triangle)"/>
+  <path class="relation" d="M155 445 L190 230" marker-end="url(#triangle)"/>
+  <path class="relation" d="M440 445 L235 230" marker-end="url(#triangle)"/>
+
+  <rect class="box" x="650" y="112" width="300" height="222"/>
+  <path class="header" d="M660 112 H940 Q950 112 950 122 V154 H650 V122 Q650 112 660 112 Z"/>
+  <text x="800" y="140" text-anchor="middle" class="title">Document</text>
+  <text x="672" y="184" class="body">- elements : shared element list</text>
+  <text x="672" y="208" class="body">- undoHistory : document snapshots</text>
+  <text x="672" y="232" class="body">- redoHistory : document snapshots</text>
+  <line x1="650" y1="250" x2="950" y2="250" stroke="#94a3b8"/>
+  <text x="672" y="278" class="body">+ addElement(element)</text>
+  <text x="672" y="302" class="body">+ undo() / redo() : bool</text>
+  <text x="672" y="326" class="body">+ render() : string</text>
+
+  <path class="relation" d="M650 171 C560 95 470 95 355 171" marker-end="url(#arrow)"/>
+  <text x="502" y="98" text-anchor="middle" class="label">contains ordered elements</text>
+
+  <rect class="box" x="650" y="424" width="300" height="118"/>
+  <path class="header" d="M660 424 H940 Q950 424 950 434 V480 H650 V434 Q650 424 660 424 Z"/>
+  <text x="800" y="448" text-anchor="middle" class="stereotype">&lt;&lt;abstract&gt;&gt;</text>
+  <text x="800" y="470" text-anchor="middle" class="title">Persistence</text>
+  <text x="672" y="514" class="body">+ save(data : string)</text>
+
+  <rect class="box" x="585" y="610" width="240" height="96"/>
+  <path class="header" d="M595 610 H815 Q825 610 825 620 V645 H585 V620 Q585 610 595 610 Z"/>
+  <text x="705" y="637" text-anchor="middle" class="title">FileStorage</text>
+  <text x="605" y="683" class="body">+ save(data : string)</text>
+
+  <rect class="box" x="865" y="610" width="240" height="96"/>
+  <path class="header" d="M875 610 H1095 Q1105 610 1105 620 V645 H865 V620 Q865 610 875 610 Z"/>
+  <text x="985" y="637" text-anchor="middle" class="title">DBstorage</text>
+  <text x="885" y="683" class="body">+ save(data : string)</text>
+
+  <path class="relation" d="M705 610 L755 542" marker-end="url(#triangle)"/>
+  <path class="relation" d="M985 610 L845 542" marker-end="url(#triangle)"/>
+
+  <rect class="box" x="995" y="150" width="160" height="330"/>
+  <path class="header" d="M1005 150 H1145 Q1155 150 1155 160 V190 H995 V160 Q995 150 1005 150 Z"/>
+  <text x="1075" y="180" text-anchor="middle" class="title">DocumentsEditor</text>
+  <text x="1015" y="220" class="body">- document</text>
+  <text x="1015" y="244" class="body">- persistence</text>
+  <line x1="995" y1="262" x2="1155" y2="262" stroke="#94a3b8"/>
+  <text x="1015" y="292" class="body">+ addText()</text>
+  <text x="1015" y="316" class="body">+ addImage()</text>
+  <text x="1015" y="340" class="body">+ undo() / redo()</text>
+  <text x="1015" y="364" class="body">+ render()</text>
+  <text x="1015" y="388" class="body">+ save()</text>
+
+  <path class="relation" d="M995 210 L950 210" marker-end="url(#arrow)"/>
+  <text x="972" y="198" text-anchor="middle" class="label">uses</text>
+  <path class="relation" d="M995 440 C975 440 970 465 950 465" marker-end="url(#arrow)"/>
+  <text x="970" y="482" text-anchor="middle" class="label">uses abstraction</text>
+</svg>
